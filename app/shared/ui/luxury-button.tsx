@@ -3,16 +3,30 @@ import { cn } from "../lib/cn";
 
 type LuxuryButtonProps = PropsWithChildren<{
   className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
 }>;
 
-export function LuxuryButton({ children, className }: LuxuryButtonProps) {
+export function LuxuryButton({
+  children,
+  className,
+  onClick,
+  disabled,
+  type = "button",
+  ariaLabel,
+}: LuxuryButtonProps) {
   return (
     <button
-      type="button"
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={ariaLabel}
       className={cn(
         "group relative overflow-hidden rounded-full border border-[var(--color-gold)]",
         "bg-[var(--color-charcoal)] px-6 py-3 text-sm tracking-[0.18em] text-[var(--color-alabaster)] uppercase",
-        "transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(212,175,55,0.35)]",
+        "transition-all duration-500 hover:-translate-y-0.5 hover:shadow-[0_0_24px_rgba(212,175,55,0.35)] disabled:cursor-not-allowed disabled:opacity-70",
         className
       )}
     >
