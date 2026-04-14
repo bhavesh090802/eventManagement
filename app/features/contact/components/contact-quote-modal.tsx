@@ -95,9 +95,21 @@ export function ContactQuoteModal({ isOpen, onClose }: ContactQuoteModalProps) {
     }
   }
 
-  function handleClose() {
-    onClose();
+  function resetFormState() {
+    setFullName("");
+    setEmail("");
+    setEventType(eventTypeOptions[0]);
+    setFromDate("");
+    setEndDate("");
+    setMessage("");
+    setIsSubmitted(false);
+    setIsSubmitting(false);
     setError("");
+  }
+
+  function handleClose() {
+    resetFormState();
+    onClose();
   }
 
   if (!isOpen) return null;
